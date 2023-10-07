@@ -60,8 +60,12 @@ function playerValue() {
     }
 }
 
+function instructions() {
+    alert("Welcome!!! Let's play ROCK, PAPER, SCISSORS.\n\n Please open the console for this game to see your results.\n On Mac, use Cmd + option + J. On Windows, use Ctrl + Shift + J")
+}
 
 function game() {
+    instructions()
     for (let i = 0; i < 5; i++) {
         const playerSelection = playerValue()
         if(playerSelection === null) {
