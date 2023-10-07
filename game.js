@@ -1,15 +1,15 @@
 function playRound(playerSelection, computerSelection) {
     if(playerSelection === computerSelection) {
-        return "The result is a tie!";
+        return "It's a tie!";
     }
-    if(playerSelection === "rock") {
+    else if(playerSelection === "rock") {
         if(computerSelection === "scissors") {
             return "You Won! Rock beats Scissors";
         } else {
             return "You Lose! Paper beats Rock";
         }
     }
-    if(playerSelection === "paper") {
+    else if(playerSelection === "paper") {
         if(computerSelection === "rock") {
             return "You Won! Paper beats Rock";
         } else {
@@ -18,7 +18,7 @@ function playRound(playerSelection, computerSelection) {
             }
         }
     }
-    if(playerSelection === "scissors") {
+    else if(playerSelection === "scissors") {
         if(computerSelection === "rock") {
             return "You Lose! Scissors beats Rock";
         } else {
@@ -26,6 +26,9 @@ function playRound(playerSelection, computerSelection) {
                 return "You Won! Scissors beats Paper";
             }
         }
+    }
+    else if(playerSelection !== ("rock" || "paper" || "scissors")) {
+        return "Invalid Input"
     }
 }
 
@@ -41,18 +44,32 @@ function computerPlay() {
     }
 }
 
+function playerValue() {
+    let userChoice = prompt("Choose rock, paper or scissors. Write the option in the space below")
+    if (userChoice === null) {
+        alert("Sorry to see you go!!! Bye for now.")
+        return userChoice
+    } else {
+        let playerSelection = userChoice.trim().toLowerCase();
+        if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
+            return playerSelection
+        } else {
+            alert("Invalid!! You digited '" + playerSelection + "' Please write rock, paper or scissors");
+            return ""
+        }
+    }
+}
+
+
 function game() {
     for (let i = 0; i < 5; i++) {
-        do {
-            var userChoice = prompt("Do you choose rock, paper or scissors? Write the option in the space below");
-            var correctChoice = false;
-            var playerSelection = userChoice.toLowerCase();
-            if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
-                correctChoice = true;
-            } else {
-                alert("Invalid!! You digited " + playerSelection + " Please write rock, paper or scissors");
-            }
-        } while (correctChoice == false);
+        const playerSelection = playerValue()
+        if(playerSelection === null) {
+            i = 5
+            break
+        } else if (playerSelection === "") {
+            i -= 1
+        }
         const computerSelection = computerPlay();
         console.log(playRound(playerSelection, computerSelection));
     }
